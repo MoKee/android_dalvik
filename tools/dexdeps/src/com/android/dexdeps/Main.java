@@ -40,9 +40,9 @@ public class Main {
     private boolean mJustClasses = false;
 
     /**
-     * Whether to include "lineageos" namespace classes in the dump.
+     * Whether to include "mokee" namespace classes in the dump.
      */
-    private boolean mIncludeLineageClasses = false;
+    private boolean mIncludeMoKeeClasses = false;
 
     /**
      * Entry point.
@@ -70,7 +70,7 @@ public class Main {
                 List<RandomAccessFile> rafs = openInputFiles(fileName);
                 for (RandomAccessFile raf : rafs) {
                     DexData dexData = new DexData(raf);
-                    dexData.load(mIncludeLineageClasses);
+                    dexData.load(mIncludeMoKeeClasses);
                     Output.generate(dexData, mOutputFormat, mJustClasses);
                     raf.close();
                 }
@@ -225,8 +225,8 @@ public class Main {
                 //System.out.println("+++ using format " + mOutputFormat);
             } else if (arg.equals("--just-classes")) {
                 mJustClasses = true;
-            } else if (arg.equals("--include-lineage-classes")) {
-                mIncludeLineageClasses = true;
+            } else if (arg.equals("--include-mokee-classes")) {
+                mIncludeMoKeeClasses = true;
             } else {
                 System.err.println("Unknown option '" + arg + "'");
                 throw new UsageException();
